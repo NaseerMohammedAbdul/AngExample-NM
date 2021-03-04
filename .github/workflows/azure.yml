@@ -1,7 +1,7 @@
 on:
   push:
     branches:
-      - master1
+      - master
 
 env:
   AZURE_WEBAPP_NAME: ang-app-nm    # set this to your application's name
@@ -10,7 +10,7 @@ env:
 
 jobs:
   build-and-deploy:
-    name: Build and Deploy
+    name: Build and Deploy 123
     runs-on: ubuntu-latest
   
     steps:
