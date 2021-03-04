@@ -23,3 +23,9 @@ jobs:
         env:
           DEFAULT_BRANCH: master
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+          LINTER_RULES_PATH: /
+               CSS_FILE_NAME:.tslint.json
+               JAVASCRIPT_ES_CONFIG_FILE:.tsconfig.app.json
+               VALIDATE_CSS:true
+               VALIDATE_JAVASCRIPT_ES:true
