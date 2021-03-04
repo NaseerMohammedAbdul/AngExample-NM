@@ -28,7 +28,7 @@ env:
   NODE_VERSION: '12.16.1'                # set this to the node version to use
 
 jobs:
-  build-and-deploy:
+  build:
     name: Yarn Format
     runs-on: ubuntu-latest
   
