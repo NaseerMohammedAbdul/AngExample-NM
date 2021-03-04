@@ -16,9 +16,11 @@
 # For more information on GitHub Actions for Azure, refer to https://github.com/Azure/Actions
 # For more samples to get started with GitHub Action workflows to deploy to Azure, refer to https://github.com/Azure/actions-workflow-samples
 on:
-  push:
-    branches:
-      - master1
+  pull_request:
+    branches: [ master ]
+    types: [ opened, edited, reopened ]
+    paths: 
+      - '.'
 
 env:
   AZURE_WEBAPP_NAME: ang-app-nm    # set this to your application's name
@@ -27,7 +29,7 @@ env:
 
 jobs:
   build-and-deploy:
-    name: Build and Deploy
+    name: Yarn Format
     runs-on: ubuntu-latest
   
     steps:
@@ -39,15 +41,4 @@ jobs:
         
     - name: npm install, build, and test
       run: |
-        # Build and test the project, then
-        # deploy to Azure Web App.
-        npm install
-        npm run build
-        
-    - name: 'Deploy to Azure WebApp'
-      uses: azure/webapps-deploy@v2
-      with:
-        app-name: ${{ env.AZURE_WEBAPP_NAME }}
-        slot-name: 'production'
-        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-        package: .
+        yarn run format
