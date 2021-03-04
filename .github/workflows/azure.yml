@@ -18,7 +18,7 @@
 on:
   push:
     branches:
-      - master
+      - master1
 
 env:
   AZURE_WEBAPP_NAME: ang-app-nm    # set this to your application's name
