@@ -1,0 +1,32 @@
+# GitHub Actions workflow for the Tech Radar API when PR is created for node folder changes
+name: API Pull Request Title Check
+
+on:
+  pull_request:
+    branches: [ master ]
+    types: [ opened, edited, reopened ]
+    paths: 
+      - '.'
+env:
+    NODE_VERSION: '10.x'
+    
+jobs:
+  build:
+    runs-on: ubuntu-latest    
+    steps:
+      - uses: actions/checkout@v2
+            
+      - name: Use Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+              
+      - name: npm install
+        working-directory: ./node
+        run: |
+          npm install  
+       
+       - name: "Check PR title for correct formatting"
+        working-directory: ./node
+        run: |
+          yarn run format
