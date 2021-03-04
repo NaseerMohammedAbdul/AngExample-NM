@@ -1,0 +1,27 @@
+on:
+  pull_request:
+    branches: [ master ]
+    types: [ opened, edited, reopened ]
+    paths: 
+      - '.'
+
+env:
+  AZURE_WEBAPP_NAME: ang-app-nm    # set this to your application's name
+  AZURE_WEBAPP_PACKAGE_PATH: '.'      # set this to the path to your web app project, defaults to the repository root
+  NODE_VERSION: '12.16.1'                # set this to the node version to use
+
+jobs:
+  build-and-deploy:
+    name: Yarn Format
+    runs-on: ubuntu-latest
+  
+    steps:
+    - uses: actions/checkout@master
+    - name: Use Node.js ${{ env.NODE_VERSION }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+        
+    - name: npm install, build, and test
+      run: |
+        yarn run format
